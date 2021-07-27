@@ -7,12 +7,13 @@ import javax.ws.rs.Path;
 /**
  *
  */
-@Path("/hello")
+@Path("/stop")
 @Singleton
-public class HelloController {
+public class LEDController {
 
     @GET
-    public String sayHello() {
-        return "Hello World";
+    public String stop() {
+        Chapter4CliApplication.runningFlag = false;
+        return "Stop";
     }
 }
