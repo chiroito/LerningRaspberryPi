@@ -7,13 +7,12 @@
     <artifactId>chapter4</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.target>11</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.source>11</maven.compiler.source>
         <final.name>chapter4</final.name>
         <version.quarkus>1.7.0.Final</version.quarkus>
-        <slf4j.version>2.0.0-alpha0</slf4j.version>
-        <pi4j.version>2.0-SNAPSHOT</pi4j.version>
+        <pi4j.version>1.4</pi4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -28,16 +27,16 @@
         </dependency>
 
         <!-- include Pi4J Plugins (Platforms and I/O Providers) -->
-        <dependency>
-            <groupId>com.pi4j</groupId>
-            <artifactId>pi4j-plugin-raspberrypi</artifactId>
-            <version>${pi4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pi4j</groupId>
-            <artifactId>pi4j-plugin-pigpio</artifactId>
-            <version>${pi4j.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.pi4j</groupId>-->
+<!--            <artifactId>pi4j-plugin-raspberrypi</artifactId>-->
+<!--            <version>${pi4j.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.pi4j</groupId>-->
+<!--            <artifactId>pi4j-plugin-pigpio</artifactId>-->
+<!--            <version>${pi4j.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
     <build>
         <finalName>chapter4</finalName>
@@ -45,10 +44,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>10</source>
-                    <target>10</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>
