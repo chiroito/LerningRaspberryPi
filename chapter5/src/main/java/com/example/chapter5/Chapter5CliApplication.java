@@ -14,8 +14,8 @@ public class Chapter5CliApplication implements QuarkusApplication {
     public int run(String... args) throws Exception {
 
         final GpioController gpio = GpioFactory.getInstance();
-        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "LED", PinState.HIGH);
-        final GpioPinDigitalInput sw = gpio.provisionDigitalInputPin(RaspiPin.GPIO_03, "Switch");
+        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "LED", PinState.HIGH);
+        final GpioPinDigitalInput sw = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "Switch");
         pin.setShutdownOptions(true, PinState.LOW);
 
         for(int i = 0 ; i < 100000 ; i++) {
