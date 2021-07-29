@@ -2,7 +2,6 @@ package com.example.chapter8;
 
 import com.pi4j.io.gpio.*;
 
-import com.pi4j.util.CommandArgumentParser;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
@@ -47,18 +46,20 @@ public class Chapter801Led implements QuarkusApplication {
 
         final GpioController gpio = GpioFactory.getInstance();
 
-        Pin pin = CommandArgumentParser.getPin(
-                RaspiPin.class, RaspiPin.GPIO_06,
-                args);
-        final GpioPinPwmOutput pwm = gpio.provisionPwmOutputPin(pin);
-        pwm.setPwm(50);
-
-        int adcPin0 = 0;
-
         final GpioPinDigitalOutput spics = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10);
         final GpioPinDigitalOutput spiclk = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14);
         final GpioPinDigitalOutput spimosi = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12);
         final GpioPinDigitalInput spimiso = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13);
+        spics.setShutdownOptions(true);
+        spiclk.setShutdownOptions(true);
+        spimosi.setShutdownOptions(true);
+        spimiso.setShutdownOptions(true);
+
+        final GpioPinPwmOutput pwm = gpio.provisionSoftPwmOutputPin(RaspiPin.GPIO_06);
+        pwm.setShutdownOptions(true);
+        pwm.setPwmRange(100);
+
+        int adcPin0 = 0;
 
         try {
             while (true) {
@@ -71,11 +72,6 @@ public class Chapter801Led implements QuarkusApplication {
             e.printStackTrace();
         }
 
-        pwm.setShutdownOptions(true);
-        spics.setShutdownOptions(true);
-        spiclk.setShutdownOptions(true);
-        spimosi.setShutdownOptions(true);
-        spimiso.setShutdownOptions(true);
         gpio.shutdown();
 
         return 0;
